@@ -12,6 +12,7 @@ import { CardList, CardItem } from "./styles";
 import SVGListItems from "@/components/icons/SVGListItems";
 import SVGMultipleCards from "@/components/icons/SVGMultipleCards";
 import { useCart } from "@/context/CartContext";
+import Link from "next/link";
 
 interface Product {
   id: number;
@@ -125,7 +126,7 @@ export default function Home() {
         value={itemsPerPage}
         onChange={(e) => {
           setItemsPerPage(Number(e.target.value));
-          setOffset(0); // reinicia a paginação ao mudar
+          setOffset(0);
         }}
         className="border text-sm rounded px-2 py-1 mr-3 bg-white"
       >
@@ -151,6 +152,7 @@ export default function Home() {
             <CardItem key={item.id} className={viewMode}>
               {viewMode === "grid" ? (
                 <>
+                <Link href={`/products/${item.id}`} target="_blank">
                   <div className="grid-top">
                     <Image
                       alt="product image"
@@ -168,12 +170,13 @@ export default function Home() {
                     <p className="item-price"><span className="pr-2">R$</span>{item.price}</p>
                     <p className="item-description">{item.description}</p>
                   </div>
+                </Link>
                   <ButtonAddToCart
-                      hasItems={state.cartItems.some((ci) => ci.id === item.id)}
-                      onClick={() => handleAddToCart(item)}
-                    >
-                      <SVGCart />
-                    </ButtonAddToCart>
+                    hasItems={state.cartItems.some((ci) => ci.id === item.id)}
+                    onClick={() => handleAddToCart(item)}
+                  >
+                    <SVGCart />
+                  </ButtonAddToCart>
                 </>
               ) : (
                 <>
@@ -184,12 +187,14 @@ export default function Home() {
                     src={item.image}
                     className="max-w-30 flex pl-1"
                   />
-                  <div className="flex flex-col items-start flex-1 min-w-0 w-full items-name">
-                    <p className="item-title">{item.title}</p>
-                    <p className="item-category">{item.category}</p>
-                    <p className="item-price"><span className="pr-2">R$</span>{item.price}</p>
-                    <p className="item-description">{item.description}</p>
-                  </div>
+                  <Link href={`/products/${item.id}`} target="_blank">
+                    <div className="flex flex-col items-start flex-1 min-w-0 w-full items-name">
+                      <p className="item-title">{item.title}</p>
+                      <p className="item-category">{item.category}</p>
+                      <p className="item-price"><span className="pr-2">R$</span>{item.price}</p>
+                      <p className="item-description">{item.description}</p>
+                    </div>
+                  </Link>
                   <ButtonAddToCart
                     hasItems={state.cartItems.some((ci) => ci.id === item.id)}
                     onClick={() => handleAddToCart(item)}

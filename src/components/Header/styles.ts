@@ -6,7 +6,7 @@ export const HeaderSection = styled.header`
   color: ${theme.colors.textPrimary};
   display: flex;
   justify-content: center;
-  max-width: 1920px;
+  max-width: 2590px;
   width: 100%;
   padding: 0 80px;
   height: 60px;

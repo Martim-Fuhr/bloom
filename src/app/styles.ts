@@ -86,6 +86,11 @@ export const CardItem = styled.li`
       display: -webkit-box; 
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
+      max-width: 90%;
+    }
+
+    button {
+      width: 35px;
     }
   }
 
